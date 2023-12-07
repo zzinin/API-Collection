@@ -1,0 +1,81 @@
+{
+	"id": "65c9b09c-4f50-476d-8301-1a87283e67e3",
+	"values": [
+		{
+			"key": "URL",
+			"value": "https://pokeapi.co/api/v2/pokemon",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "ID",
+			"value": "1",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "NAME",
+			"value": "bulbasaur",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "AbilityName1",
+			"value": "overgrow",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "AbilityName2",
+			"value": "chlorophyll",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "GameIndices1",
+			"value": "red",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "GameIndices4",
+			"value": "gold",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "Move1",
+			"value": "razor-wind",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "MoveLMethod",
+			"value": "egg",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "Type1",
+			"value": "grass",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "Type2",
+			"value": "poison",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "TotalAbility",
+			"value": "2",
+			"type": "default",
+			"enabled": true
+		}
+	],
+	"name": "Globals",
+	"_postman_variable_scope": "globals",
+	"_postman_exported_at": "2023-12-06T23:55:17.385Z",
+	"_postman_exported_using": "Postman/10.20.10"
+}
