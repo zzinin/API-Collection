@@ -14,9 +14,10 @@ Endpoint POKEMON URL : https://pokeapi.co/api/v2/pokemon/{id or name}/
 
 Test Suite :
 This contains at present five GET requests (2 are for Data driven from runner , 3 are for simply running from postman )
-I have used global Variables for parameterizing URL-https://pokeapi.co/api/v2/pokemon/ , this will be called in all the request with {{URL}} in global variable and also gloabal variables like ID , NAME and other important fields to be checked .
-For simplicity have 3 test suites for contains the simple test around ID , NAME and Detailed test.
-Datadriven 2 test suites are for runner 
-
+I have used global Variables(global.json) for parameterizing URL-https://pokeapi.co/api/v2/pokemon/ , this will be called in all the request with {{URL}} in global variable and also gloabal variables like ID , NAME and other important fields to be checked .
+For simplicity have:
+- Three test suites which contains the simple test around ID , NAME and Detailed test.
+- Datadriven two test suites are for runner 
+- global.json conating the global data for parameterized fields.
 Evolving Evolving 
-4.
+
