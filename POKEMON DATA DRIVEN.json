@@ -1,0 +1,197 @@
+{
+	"info": {
+		"_postman_id": "88e784c0-a2f5-44b8-b186-fbb213b98c26",
+		"name": "POKEMON DATA DRIVEN",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "5378149"
+	},
+	"item": [
+		{
+			"name": "DataDriven",
+			"item": [
+				{
+					"name": "DataDriven_Pokemon_FindBy_ID_DataDriven",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"/*\r",
+									"Pokemon with Data driven for data file (Excel)\r",
+									"Excel contains the coloumn namely ID and NAME .User can prepopulate the ID and NAME.Once done Postman runner can be sued to run the test.\r",
+									"I have unchecked the ID field in global variables to pass from the excel.\r",
+									"Also ID value printed in the  test name \r",
+									"\r",
+									"\r",
+									"*/\r",
+									"\r",
+									"//Test for status code\r",
+									"pm.test('Response status code to be 200', function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"})\r",
+									"\r",
+									"//Negative test\r",
+									"pm.test(\"EXPECTED FAILED GET request for \", () => {\r",
+									"  pm.expect(pm.response.code).to.be.oneOf([404,500]);\r",
+									"});\r",
+									"//Test for status \r",
+									"pm.test(\"Status code name has string OK\", () => {\r",
+									"  pm.response.to.have.status(\"OK\");\r",
+									"});\r",
+									"\r",
+									"\r",
+									"//Test for ID field as passed in request via excel and as received in the response body\r",
+									"\r",
+									"pm.test(\"API response contains the expected field\",() =>{\r",
+									"  const response = pm.response.json();\r",
+									"  id=pm.iterationData.get(\"ID\");\r",
+									"  console.log(id);\r",
+									"  pm.expect(response).has.property(\"id\",id);\r",
+									"\r",
+									"});\r",
+									"\r",
+									"// ID value printed in the  test name\r",
+									"\r",
+									"pm.test(\"Response body contains the ID as : \" + pm.iterationData.get(\"ID\"), function () {\r",
+									"          var jsonData = pm.response.json();\r",
+									"        pm.expect(jsonData.id).to.eql(pm.iterationData.get(\"ID\"));\r",
+									"    });\r",
+									"\r",
+									"\r",
+									"\r",
+									"//Response Header test\r",
+									"pm.test(\"Content-Type is present :\" +\" \" +pm.response.headers.get(\"Content-Type\"), function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"// Response time test\r",
+									"pm.test(\"Response time is less than :\"  +\"   \" + pm.response.responseTime +\"ms \" , function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "URL",
+								"value": "https://pokeapi.co/api/v2/pokemon/",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{{ID}}"
+						},
+						"url": {
+							"raw": "{{URL}}/{{ID}}",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"{{ID}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DataDriven_Pokemon_FindBy_NAME_DataDriven",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"/*\r",
+									"Pokemon with Data driven for data file (Excel)\r",
+									"Excel contains the coloumn namely ID and NAME .User can prepopulate the ID and NAME.Once done Postman runner can be sued to run the test.\r",
+									"I have unchecked the NAME field in global variables to pass from the excel.\r",
+									"Also NAME value printed in the  test name \r",
+									"\r",
+									"*/\r",
+									"\r",
+									"\r",
+									"pm.test('Response status code to be 200', function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"})\r",
+									"\r",
+									"//Negative test\r",
+									"pm.test(\"EXPECTED FAILED GET request for \", () => {\r",
+									"  pm.expect(pm.response.code).to.be.oneOf([404,500]);\r",
+									"});\r",
+									"//Test for status \r",
+									"pm.test(\"Status code name has string OK\", () => {\r",
+									"  pm.response.to.have.status(\"OK\");\r",
+									"});\r",
+									"\r",
+									"\r",
+									"//Test for NAME field as passed in request via excel and as received in the response body\r",
+									"pm.test(\"API response contains the expected field\",() =>{\r",
+									"  const response = pm.response.json();\r",
+									"  name=pm.iterationData.get(\"NAME\");\r",
+									"  console.log(name);\r",
+									"  pm.expect(response).has.property(\"name\",name);\r",
+									" \r",
+									"});\r",
+									"\r",
+									"//NAME value printed in the  test name\r",
+									"\r",
+									"pm.test(\"Response body contains the Name as : \" + pm.iterationData.get(\"NAME\"), function () {\r",
+									"          var jsonData = pm.response.json();\r",
+									"        pm.expect(jsonData.name).to.eql(pm.iterationData.get(\"NAME\"));\r",
+									"    });\r",
+									"\r",
+									"\r",
+									"//Response Header test\r",
+									"pm.test(\"Content-Type is present :\" +\" \" +pm.response.headers.get(\"Content-Type\"), function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"// Response time test\r",
+									"pm.test(\"Response time is less than :\"  +\"   \" + pm.response.responseTime +\"ms \" , function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "URL",
+								"value": "https://pokeapi.co/api/v2/pokemon/",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{{NAME}}"
+						},
+						"url": {
+							"raw": "{{URL}}/{{NAME}}",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"{{NAME}}"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Data Driven Test"
+		}
+	]
+}

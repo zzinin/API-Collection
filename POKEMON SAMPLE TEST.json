@@ -1,0 +1,441 @@
+{
+	"info": {
+		"_postman_id": "7bab502f-f936-41e9-9a3b-1de46936dcd0",
+		"name": "Pokeman Sample Test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "5378149"
+	},
+	"item": [
+		{
+			"name": "ManualTest",
+			"item": [
+				{
+					"name": "Pokemon_FindBy_Id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"/*\r",
+									"Test for response body for ID of POKEMON\r",
+									"Additionally test perfromed for :\r",
+									"1. Status code check \r",
+									"2.ID passed and ID in the response body match\r",
+									"3.ID variable printed in test  \r",
+									"\r",
+									"*/\r",
+									"\r",
+									"\r",
+									"\r",
+									"\r",
+									"//TEST for Status code check \r",
+									"pm.test('Response status code to be 200', function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"})\r",
+									"\r",
+									"//Negative test\r",
+									"pm.test(\"EXPECTED FAILED GET request for \", () => {\r",
+									"  pm.expect(pm.response.code).to.be.oneOf([404,500]);\r",
+									"});\r",
+									"//Test for status \r",
+									"pm.test(\"Status code name has string OK\", () => {\r",
+									"  pm.response.to.have.status(\"OK\");\r",
+									"});\r",
+									"\r",
+									"//Test for ID used in request URL  and ID in the response body match\r",
+									"pm.test(\"API response contains the expected field\",() =>{\r",
+									"  const response = pm.response.json();\r",
+									"  id=pm.globals.get(\"ID\");\r",
+									"  console.log(id);\r",
+									"  value=parseInt(id);\r",
+									"  console.log(value);\r",
+									"  console.log(pm.iterationData.get(\"ID\"));\r",
+									"\r",
+									"  pm.expect(response).has.property(\"id\",value);\r",
+									" \r",
+									"});\r",
+									"\r",
+									"//ID variable printed in Test\r",
+									"\r",
+									" pm.test(\"Response body contains the ID as : \" + pm.globals.get(\"ID\"), function () {\r",
+									"          var jsonData = pm.response.json();\r",
+									"        pm.expect(jsonData.id).to.eql(parseInt(pm.globals.get(\"ID\")));\r",
+									"    });   \r",
+									"\r",
+									"//Response Header test\r",
+									"pm.test(\"Content-Type is present :\" +\" \" +pm.response.headers.get(\"Content-Type\"), function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"// Response time test\r",
+									"pm.test(\"Response time is less than :\"  +\"   \" + pm.response.responseTime +\"ms \" , function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "URL",
+								"value": "https://pokeapi.co/api/v2/pokemon/",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{{ID}}"
+						},
+						"url": {
+							"raw": "{{URL}}/{{ID}}",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"{{ID}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Pokemon_Original_ALLTEST",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"/*\r",
+									"Test for POKEMON monsters via GET request.\r",
+									"I have test suite containing below tests .\r",
+									"  1.Test for response status code to be successful 200\r",
+									"  2.Test for \"Name\" and \"Id\" for the Pokemon monster in the response body\r",
+									"  3.Test for \"Ability\" of the Pokemon monster in the response body\r",
+									"  4.Test for \"Game Indices\" of the Pokemon monster in the response body\r",
+									"  5.Test for \"Move\" of the Pokemon monster in the response body\r",
+									"  6.Test for \"Type of Pokemon\" in the response body\r",
+									"  7.Test for match for all types as prehand test data/requirement in the resonse \r",
+									"\r",
+									"Methodology Adopted :\r",
+									"I have tried to data drive the variables defining them global\r",
+									"Data driven API i have also explored to be run via test runner . \r",
+									"*/\r",
+									"//Test for response status code to be successful 200\r",
+									"\r",
+									"pm.test('Response Status is 200', function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"})\r",
+									"\r",
+									"//Negative test\r",
+									"pm.test(\"EXPECTED FAILED GET request for \", () => {\r",
+									"  pm.expect(pm.response.code).to.be.oneOf([404,500]);\r",
+									"});\r",
+									"//Test for status \r",
+									"pm.test(\"Status code name has string OK\", () => {\r",
+									"  pm.response.to.have.status(\"OK\");\r",
+									"});\r",
+									"\r",
+									"\r",
+									"//Test for \"Name\" and \"Id\" for the Pokemon monster in the response body\r",
+									"pm.test('Test for API response Pokemon ID and Name ', () => {\r",
+									"    const response = pm.response.json();\r",
+									"    pm.expect(response).to.have.property('id',parseInt(pm.globals.get(\"ID\")));\r",
+									"    pm.expect(response).to.have.property('name', pm.globals.get(\"NAME\"));\r",
+									"})\r",
+									"\r",
+									"//NAME variable printed in Test\r",
+									"pm.test(\"Response body contains the Name as : \" + pm.globals.get(\"NAME\"), function () {\r",
+									"          var jsonData = pm.response.json();\r",
+									"        pm.expect(jsonData.name).to.eql(pm.globals.get(\"NAME\"));\r",
+									"    });\r",
+									"\r",
+									"//ID variable printed in Test\r",
+									"\r",
+									" pm.test(\"Response body contains the ID as : \" + pm.globals.get(\"ID\"), function () {\r",
+									"          var jsonData = pm.response.json();\r",
+									"        pm.expect(jsonData.id).to.eql(parseInt(pm.globals.get(\"ID\")));\r",
+									"    });   \r",
+									"\r",
+									"\r",
+									"\r",
+									"//Test for \"Ability\" of the Pokemon monster in the response body\r",
+									"pm.test(\"Ability check done :\"  , function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    console.log('Total Abilities are:', jsonData.abilities.length);\r",
+									"    const name1 = jsonData.abilities[0].ability.name;\r",
+									"    console.log(name1);\r",
+									"    pm.expect(name1,pm.globals.get(\"AbilityName1\"));\r",
+									"    const name2 = jsonData.abilities[1].ability.name;\r",
+									"    pm.expect(name2,pm.globals.get(\"AbilityName2\"));\r",
+									"    console.log(name2);\r",
+									"})\r",
+									"\r",
+									"\r",
+									"\r",
+									"// Total ability number check \r",
+									"\r",
+									"pm.test(\"Checked Total number of Abilities  :\"  + pm.globals.get(\"TotalAbility\"),  function () {\r",
+									"var jsonData=pm.response.json();\r",
+									"pm.expect(jsonData.abilities.length).is.eql(parseInt(pm.globals.get(\"TotalAbility\")))\r",
+									"})\r",
+									"\r",
+									"\r",
+									"//Test for \"Game Indices\" of the Pokemon monster in the response body\r",
+									"pm.test(\"Game indices check done\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    console.log('Total game_indices are :', jsonData.game_indices.length);\r",
+									"    const game1 = jsonData.game_indices[0].version.name;\r",
+									"    console.log(game1);\r",
+									"    pm.expect(game1, pm.globals.get(\"game1\"));\r",
+									"    const game4 = jsonData.game_indices[3].version.name;\r",
+									"    console.log(game4);\r",
+									"    pm.expect(game4,pm.globals.get(\"game4\") );\r",
+									"})\r",
+									"\r",
+									"//Test for \"Move\" of the Pokemon monster in the response body\r",
+									"pm.test(\"Move check done\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    console.log('Total Move are :', jsonData.moves.length);\r",
+									"    const move1 = jsonData.moves[0].move.name;\r",
+									"    console.log(move1);\r",
+									"    pm.expect(move1, pm.globals.get(\"move1\"));\r",
+									"    const moveLmethod = jsonData.moves[0].version_group_details[0].move_learn_method.name;\r",
+									"    console.log(moveLmethod);\r",
+									"    pm.expect(moveLmethod, pm.globals.get(\"moveLmethod\"));\r",
+									"})\r",
+									"//Test for \"Type of Pokemon\" in the response body\r",
+									"\r",
+									"pm.test('Type of pokemon Check', function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    console.log('Total types of Pokemon are', jsonData.types.length);\r",
+									"    const type1 = jsonData.types[0].type.name;\r",
+									"    console.log(type1);\r",
+									"    pm.expect(type1, pm.globals.get(\"Type1\"));\r",
+									"})\r",
+									"\r",
+									"//Test for match for all types as prehand test data/requirement in the resonse \r",
+									"pm.test('Verifying all types of Pokemon', function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    type1=pm.globals.get(\"Type1\");\r",
+									"    console.log(type1);\r",
+									"    type2=pm.globals.get(\"Type2\");\r",
+									"    console.log(type2);\r",
+									"    for (var i = 0; i < jsonData.types.length; i++) {\r",
+									"        pm.expect(jsonData.types[i].type.name).to.be.oneOf([\r",
+									"            type1,\r",
+									"            type2\r",
+									"        ]);\r",
+									"    }\r",
+									"})\r",
+									"\r",
+									"pm.test(\"Response body contains the Type1 & Typee 2 as : \" + pm.globals.get(\"Type1\")+ \"  &  \" + pm.globals.get(\"Type2\"), function () {\r",
+									"          var jsonData = pm.response.json();\r",
+									"          type1=pm.globals.get(\"Type1\");\r",
+									"          type2=pm.globals.get(\"Type2\");\r",
+									"        for (var i = 0; i < jsonData.types.length; i++) {\r",
+									"        pm.expect(jsonData.types[i].type.name).to.be.oneOf([\r",
+									"            type1,type2]);\r",
+									"        }\r",
+									"    });\r",
+									"\r",
+									"//Response Header test\r",
+									"//Response Header test\r",
+									"pm.test(\"Content-Type is present :\" +\" \" +pm.response.headers.get(\"Content-Type\"), function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"// Response time test\r",
+									"pm.test(\"Response time is less than :\"  +\"   \" + pm.response.responseTime +\"ms \" , function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "URL",
+								"value": "https://pokeapi.co/api/v2/pokemon/",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://pokeapi.co/api/v2/pokemon/{{ID}}",
+							"protocol": "https",
+							"host": [
+								"pokeapi",
+								"co"
+							],
+							"path": [
+								"api",
+								"v2",
+								"pokemon",
+								"{{ID}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Pokemon_FindBy_Name",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									"\r",
+									"//TEST for Status code check \r",
+									"pm.test('Response status code to be 200', function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"})\r",
+									"\r",
+									"//Negative test\r",
+									"pm.test(\"EXPECTED FAILED GET request for \", () => {\r",
+									"  pm.expect(pm.response.code).to.be.oneOf([404,500]);\r",
+									"});\r",
+									"//Test for status \r",
+									"pm.test(\"Status code name has string OK\", () => {\r",
+									"  pm.response.to.have.status(\"OK\");\r",
+									"});\r",
+									"\r",
+									"\r",
+									"\r",
+									"pm.test('Test for API response Pokemon Name ', () => {\r",
+									"    const response = pm.response.json();\r",
+									"    pm.expect(response).to.have.property('name', pm.globals.get(\"NAME\"));\r",
+									"})\r",
+									"\r",
+									"//NAME variable printed in Test\r",
+									"pm.test(\"Response body contains the Name as : \" + pm.globals.get(\"NAME\"), function () {\r",
+									"          var jsonData = pm.response.json();\r",
+									"        pm.expect(jsonData.name).to.eql(pm.globals.get(\"NAME\"));\r",
+									"    });\r",
+									"\r",
+									"\r",
+									"//Response Header test\r",
+									"pm.test(\"Content-Type is present :\" +\" \" +pm.response.headers.get(\"Content-Type\"), function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"// Response time test\r",
+									"pm.test(\"Response time is less than :\"  +\"   \" + pm.response.responseTime +\"ms \" , function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "URL",
+								"value": "https://pokeapi.co/api/v2/pokemon/",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{URL}}/{{NAME}}",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"{{NAME}}"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Response time is :\" +\" ----- \" +pm.response.responseTime +\"ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(3000);",
+							"    ",
+							"});"
+						]
+					}
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"pm.test(\"Response time is less than :\" +\"  \" +pm.response.responseTime  , function () {",
+					"    pm.expect(pm.response.responseTime).to.be.below(3000);",
+					"});"
+				]
+			}
+		}
+	]
+}
